@@ -1,0 +1,166 @@
+---
+// ヘッダーコンポーネント
+// 固定ヘッダー（sticky header）でナビゲーションを実装
+export interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+// ナビゲーションアイテム
+const navItems = [
+  { label: 'ABOUT', href: '/#about' },
+  { label: 'WORKS & SKILLS', href: '/#works' },
+  { label: 'PRICING', href: '/#pricing' },
+  { label: 'CONTACT', href: '/contact' }
+];
+
+// 現在のページかどうかを判定する関数
+const isActive = (href: string) => {
+  if (href === '/') return currentPath === '/';
+  return currentPath.includes(href.replace('/#', ''));
+};
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-primary-100/30">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between py-4">
+      <!-- ロゴ -->
+      <div class="flex items-center">
+        <a href="/" class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent hover:from-primary-500 hover:to-accent-500 transition-all duration-300">
+          WEBテーラー
+        </a>
+      </div>
+
+      <!-- デスクトップナビゲーション -->
+      <nav class="hidden md:flex items-center space-x-8">
+        {navItems.map((item) => (
+          <a 
+            href={item.href}
+            class={`relative font-medium transition-all duration-300 hover:text-primary-600 ${
+              isActive(item.href) ? 'text-primary-600' : 'text-neutral-700'
+            }`}
+          >
+            {item.label}
+            <!-- ホバー時のアンダーライン -->
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-400 to-accent-500 transition-all duration-300 group-hover:w-full"></span>
+          </a>
+        ))}
+      </nav>
+
+      <!-- モバイルメニューボタン -->
+      <button 
+        id="mobile-menu-btn"
+        class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg hover:bg-primary-50 transition-colors duration-200"
+        aria-label="メニューを開く"
+      >
+        <svg class="w-6 h-6 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- モバイルメニュー -->
+  <div id="mobile-menu" class="md:hidden hidden bg-white/95 backdrop-blur-md border-t border-primary-100/30">
+    <div class="container mx-auto px-4 py-4">
+      <nav class="flex flex-col space-y-4">
+        {navItems.map((item) => (
+          <a 
+            href={item.href}
+            class={`block py-2 font-medium transition-colors duration-200 hover:text-primary-600 ${
+              isActive(item.href) ? 'text-primary-600' : 'text-neutral-700'
+            }`}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- ヘッダー用JavaScript -->
+<script>
+  // モバイルメニューの開閉
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        
+        // アクセシビリティのためのaria属性更新
+        const isOpen = !mobileMenu.classList.contains('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', isOpen.toString());
+        mobileMenuBtn.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+      });
+      
+      // メニュー外クリックで閉じる
+      document.addEventListener('click', (e) => {
+        if (!mobileMenuBtn.contains(e.target as Node) && !mobileMenu.contains(e.target as Node)) {
+          mobileMenu.classList.add('hidden');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          mobileMenuBtn.setAttribute('aria-label', 'メニューを開く');
+        }
+      });
+    }
+
+    // スムーススクロール（ページ内リンク用）
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const headerOffset = 80; // ヘッダーの高さ分のオフセット
+          const elementPosition = target.offsetTop;
+          const offsetPosition = elementPosition - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // スクロール時のヘッダー背景変更
+    let lastScroll = 0;
+    const header = document.querySelector('header');
+    
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 100) {
+        header?.classList.add('bg-white/90');
+      } else {
+        header?.classList.remove('bg-white/90');
+      }
+      
+      lastScroll = currentScroll;
+    });
+  });
+</script>
+
+<style>
+  /* ナビゲーションのホバー効果 */
+  nav a {
+    position: relative;
+  }
+  
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #22ccf0, #0ea5e9);
+    transition: width 0.3s ease;
+  }
+  
+  nav a:hover::after {
+    width: 100%;
+  }
+</style>

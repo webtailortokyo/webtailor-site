@@ -1,0 +1,273 @@
+---
+// ベースレイアウトコンポーネント
+// 全ページで共通のHTML構造を提供
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  currentPath?: string;
+  ogImage?: string;
+}
+
+const { 
+  title, 
+  description, 
+  currentPath = '/', 
+  ogImage = '/ogp-image.jpg' 
+} = Astro.props;
+
+// サイト情報
+const siteTitle = 'WEBテーラー';
+const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
+const siteUrl = 'https://webtailor.jp'; // 実際のドメインに変更してください
+const fullUrl = `${siteUrl}${currentPath}`;
+---
+
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+  <!-- 基本メタ情報 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content={Astro.generator} />
+  
+  <!-- SEO関連 -->
+  <title>{fullTitle}</title>
+  <meta name="description" content={description}>
+  <meta name="keywords" content="WEB制作,コーディング,フリーランス,HTML,CSS,JavaScript,WordPress,レスポンシブ,個人事業主">
+  <meta name="author" content="WEBテーラー">
+  
+  <!-- OGP設定 -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={fullTitle}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={fullUrl}>
+  <meta property="og:site_name" content={siteTitle}>
+  <meta property="og:image" content={`${siteUrl}${ogImage}`}>
+  <meta property="og:locale" content="ja_JP">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={fullTitle}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={`${siteUrl}${ogImage}`}>
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href={fullUrl}>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  <!-- プリロード（パフォーマンス最適化） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- 構造化データ（JSON-LD） -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "WEBテーラー",
+      "description": "個人事業主によるWEB制作コーディングサービス",
+      "url": "https://webtailor.work",
+      "serviceType": "WEB制作・コーディング",
+      "areaServed": "日本全国",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+81-3-1234-5678",
+        "contactType": "customer service",
+        "email": "contact@webtailor.jp"
+      }
+    }
+  </script>
+  
+  <!-- グローバルCSS -->
+  <link rel="stylesheet" href="/src/styles/global.css">
+  <link rel="stylesheet" href="/src/styles/responsive.css">
+  
+  <!-- テーマカラー -->
+  <meta name="theme-color" content="#22ccf0">
+</head>
+
+<body class="min-h-screen bg-neutral-50 text-neutral-800 font-noto antialiased custom-scrollbar">
+  <!-- スキップリンク（アクセシビリティ向上） -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-600 text-white px-4 py-2 rounded-md z-50">
+    メインコンテンツにスキップ
+  </a>
+  
+  <!-- ローディング画面（任意） -->
+  <div id="loading-screen" class="fixed inset-0 bg-gradient-primary z-50 flex items-center justify-center transition-opacity duration-500">
+    <div class="text-center">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-accent-600 mx-auto mb-4"></div>
+      <p class="text-accent-700 font-medium">Loading...</p>
+    </div>
+  </div>
+  
+  <!-- ヘッダー -->
+  <Header currentPath={currentPath} />
+  
+  <!-- メインコンテンツ -->
+  <main id="main-content" class="pt-20"> <!-- ヘッダー高さ分のpaddingを追加 -->
+    <slot />
+  </main>
+  
+  <!-- フッター -->
+  <Footer />
+  
+  <!-- ページトップに戻るボタン -->
+  <button 
+    id="scroll-to-top"
+    class="fixed bottom-6 right-6 w-12 h-12 bg-gradient-to-r from-primary-500 to-accent-500 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 opacity-0 pointer-events-none z-40"
+    aria-label="ページの最上部に戻る"
+  >
+    <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
+  </button>
+  
+  <!-- 装飾的な背景要素 -->
+  <div class="fixed inset-0 z-10 overflow-hidden pointer-events-none">
+    <!-- 幾何学的図形 -->
+    <div class="absolute top-20 left-10 w-24 h-24 bg-primary-200/20 rounded-full geometric-float"></div>
+    <div class="absolute top-40 right-20 w-16 h-16 bg-accent-200/20 transform rotate-45 geometric-float" style="animation-delay: -2s;"></div>
+    <div class="absolute bottom-40 left-1/4 w-20 h-20 bg-primary-300/10 rounded-full geometric-float" style="animation-delay: -4s;"></div>
+    <div class="absolute bottom-20 right-1/3 w-12 h-12 bg-accent-300/10 transform rotate-45 geometric-float" style="animation-delay: -6s;"></div>
+  </div>
+  <!-- アニメーション用JavaScript -->
+  <script src="/js/animations.js" defer></script>
+</body>
+
+<!-- 共通JavaScript -->
+<script>
+  // ローディング画面の制御
+  document.addEventListener('DOMContentLoaded', () => {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+      setTimeout(() => {
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+        }, 500);
+      }, 1000);
+    }
+    
+    // スクロール位置に基づくアニメーション
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    
+    // フェードインアニメーション対象要素を監視
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+      observer.observe(el);
+    });
+    
+    // スクロールトップボタンの制御
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn?.classList.remove('opacity-0', 'pointer-events-none');
+        scrollToTopBtn?.classList.add('opacity-100');
+      } else {
+        scrollToTopBtn?.classList.add('opacity-0', 'pointer-events-none');
+        scrollToTopBtn?.classList.remove('opacity-100');
+      }
+    });
+    
+    scrollToTopBtn?.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // パフォーマンス向上のためのプリフェッチ
+    const links = document.querySelectorAll('a[href^="/"]');
+    const linkObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const link = entry.target as HTMLAnchorElement;
+          const prefetchLink = document.createElement('link');
+          prefetchLink.rel = 'prefetch';
+          prefetchLink.href = link.href;
+          document.head.appendChild(prefetchLink);
+          linkObserver.unobserve(link);
+        }
+      });
+    });
+    
+    links.forEach(link => linkObserver.observe(link));
+  });
+  
+  // ページビューアナリティクス（Google Analyticsなど）
+  // gtag('config', 'GA_MEASUREMENT_ID', {
+  //   page_title: document.title,
+  //   page_location: window.location.href
+  // });
+</script>
+
+</html>
+
+<style is:global>
+  /* アクセシビリティ対応 */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+  
+  /* ローディングアニメーション */
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* スムーススクロールのブラウザサポート */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  
+  /* フォーカス時のアウトライン */
+  *:focus {
+    outline: 2px solid #22ccf0;
+    outline-offset: 2px;
+  }
+  
+  /* 選択時のハイライト */
+  ::selection {
+    background-color: #99effd;
+    color: #0f172a;
+  }
+</style>

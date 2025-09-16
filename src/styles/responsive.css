@@ -1,0 +1,398 @@
+/**
+ * レスポンシブ対応CSS
+ * モバイルファーストアプローチで実装
+ */
+
+/* ベースレスポンシブ設定 */
+@media screen and (max-width: 480px) {
+  /* スマートフォン（縦持ち） */
+  
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* フォントサイズの調整 */
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1.2;
+  }
+  
+  h2 {
+    font-size: 1.75rem !important;
+  }
+  
+  h3 {
+    font-size: 1.5rem !important;
+  }
+  
+  /* セクション間隔の調整 */
+  .section-padding {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  /* ヒーローセクション */
+  .hero {
+    min-height: 100vh;
+    padding: 2rem 0;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem !important;
+    line-height: 1.1;
+  }
+  
+  .hero-description {
+    font-size: 1.125rem;
+    margin-top: 1.5rem;
+  }
+  
+  /* ボタンのサイズ調整 */
+  .btn-gradient {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  /* グリッドレイアウトの調整 */
+  .services-grid,
+  .works-grid,
+  .skills-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+  
+  /* フォーム要素の調整 */
+  .contact-form {
+    padding: 1.5rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  input, select, textarea {
+    font-size: 16px; /* iOS Safariのズーム防止 */
+    padding: 0.875rem;
+  }
+  
+  /* テーブル風レイアウトをスタック */
+  .flex.flex-col.sm\\:flex-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+  
+  .flex.flex-col.sm\\:flex-row > div:first-child {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  /* スマートフォン（横持ちを含む） */
+  
+  /* ナビゲーションの調整 */
+  .nav-list {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* カード要素の調整 */
+  .card-hover {
+    margin-bottom: 1rem;
+    transform: none !important; /* モバイルでホバー効果を無効化 */
+  }
+  
+  /* 画像の最適化 */
+  .work-image,
+  .service-icon {
+    width: 100%;
+    height: auto;
+  }
+  
+  /* フッターの調整 */
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  /* モーダルダイアログの調整 */
+  .modal {
+    margin: 1rem;
+    max-width: calc(100vw - 2rem);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* タブレット（縦持ち） */
+  
+  /* プロフィール詳細のタイムライン */
+  .timeline-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .timeline-content {
+    margin-left: 0;
+    margin-top: 1rem;
+    width: 100%;
+  }
+  
+  /* スキル表示の調整 */
+  .skill-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  /* アニメーション効果の軽減 */
+  .geometric-float {
+    animation-duration: 10s; /* アニメーションを軽く */
+  }
+  
+  .fade-in-up {
+    transform: translateY(10px); /* 移動距離を短く */
+  }
+  
+  /* ヘッダーの調整 */
+  .header-content {
+    padding: 1rem 0;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  /* タブレット（横持ち） */
+  
+  /* コンテナ幅の調整 */
+  .container {
+    max-width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  /* レイアウトグリッドの調整 */
+  .md\\:grid-cols-2 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .md\\:grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* 文字サイズの調整 */
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+  }
+}
+
+/* 高解像度ディスプレイ対応 */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+  
+  /* 高DPI画像の使用 */
+  .hero-background {
+    background-image: url('path/to/high-res-image@2x.jpg');
+    background-size: cover;
+  }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1a202c;
+    --text-color: #e2e8f0;
+    --border-color: #4a5568;
+  }
+  
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  
+  .glass-effect {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-color: var(--border-color);
+  }
+}
+
+/* アクセシビリティ対応 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .geometric-float {
+    animation: none;
+  }
+  
+  .fade-in-up {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* プリント対応 */
+@media print {
+  .no-print,
+  header,
+  footer,
+  nav,
+  .btn-gradient,
+  button {
+    display: none !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+    color: #000;
+    background: #fff;
+  }
+  
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+  
+  .section-padding {
+    padding: 1rem 0;
+  }
+}
+
+/* フォーカス状態の改善 */
+@media (any-hover: hover) {
+  /* ホバー可能なデバイスでのみホバー効果を適用 */
+  .card-hover:hover {
+    transform: translateY(-5px);
+  }
+  
+  .btn-gradient:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+}
+
+/* タッチデバイス対応 */
+@media (any-pointer: coarse) {
+  /* タッチデバイスでのタップターゲットサイズ調整 */
+  button,
+  .btn-gradient,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* スクロールバーの調整 */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 12px;
+  }
+}
+
+/* 横向き表示対応 */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+  
+  .section-padding {
+    padding: 2rem 0;
+  }
+  
+  .modal {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}
+
+/* 特殊なビューポート対応 */
+@media screen and (max-width: 320px) {
+  /* 非常に小さなスクリーン */
+  
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .btn-gradient {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  /* 大きなデスクトップ */
+  
+  .container {
+    max-width: 1280px;
+  }
+  
+  .hero-title {
+    font-size: 5rem;
+  }
+  
+  .section-padding {
+    padding: 8rem 0;
+  }
+}
+
+/* 特定ブラウザ対応 */
+/* Safari iOS対応 */
+@supports (-webkit-appearance: none) {
+  .btn-gradient {
+    -webkit-appearance: none;
+    border-radius: 0.5rem;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    -webkit-appearance: none;
+    border-radius: 0.5rem;
+  }
+}
+
+/* Firefox対応 */
+@-moz-document url-prefix() {
+  .glass-effect {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Internet Explorer 11対応（必要に応じて） */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .glass-effect {
+    background-color: rgba(255, 255, 255, 0.9);
+    filter: none;
+  }
+  
+  .flex {
+    display: -ms-flexbox;
+    display: flex;
+  }
+  
+  .grid {
+    display: -ms-grid;
+  }
+}

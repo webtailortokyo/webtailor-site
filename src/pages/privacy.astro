@@ -1,0 +1,335 @@
+---
+// プライバシーポリシーページ
+// 個人情報の取り扱いに関する方針を記載
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="プライバシーポリシー"
+  description="WEBテーラーのプライバシーポリシー。個人情報の取り扱いについてご説明いたします。"
+  currentPath="/privacy"
+>
+  <!-- ヒーローセクション -->
+  <section class="pt-32 pb-16 bg-gradient-primary relative overflow-hidden">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-4xl mx-auto text-center space-y-6">
+        <h1 class="text-4xl md:text-5xl font-bold text-accent-800 fade-in-up">
+          プライバシーポリシー
+        </h1>
+        <p class="text-xl text-accent-600 fade-in-up" style="animation-delay: 0.2s;">
+          個人情報の取り扱いについて
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- プライバシーポリシー内容 -->
+  <section class="section-padding bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <!-- 最終更新日 -->
+        <div class="text-center mb-12 fade-in-up">
+          <p class="text-neutral-600">最終更新日：2025年1月1日</p>
+        </div>
+
+        <div class="prose prose-lg max-w-none">
+          <!-- はじめに -->
+          <div class="mb-12 fade-in-up">
+            <div class="bg-gradient-to-r from-primary-50 to-accent-50 p-8 rounded-xl">
+              <p class="text-lg text-neutral-700 leading-relaxed">
+                WEBテーラー（以下「当事業者」といいます）は、お客様の個人情報保護の重要性を深く認識し、
+                個人情報の保護に関する法律（個人情報保護法）を遵守すると共に、
+                以下のプライバシーポリシーに従って個人情報を適切に取り扱います。
+              </p>
+            </div>
+          </div>
+
+          <!-- 1. 個人情報の定義 -->
+          <div class="mb-12 fade-in-up">
+            <h2 class="text-2xl font-bold text-accent-800 mb-6 border-l-4 border-primary-400 pl-4">
+              1. 個人情報の定義
+            </h2>
+            <div class="bg-neutral-50 p-6 rounded-lg">
+              <p class="text-neutral-700 leading-relaxed">
+                本プライバシーポリシーにおいて「個人情報」とは、個人情報保護法第2条第1項に定義された、
+                特定の個人を識別することができる情報（他の情報と容易に照合することができ、
+                それにより特定の個人を識別することができることとなるものを含みます）を指します。
+              </p>
+            </div>
+          </div>
+
+          <!-- 2. 個人情報の収集について -->
+          <div class="mb-12 fade-in-up">
+            <h2 class="text-2xl font-bold text-accent-800 mb-6 border-l-4 border-primary-400 pl-4">
+              2. 個人情報の収集について
+            </h2>
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xl font-semibold text-accent-700 mb-4">2.1 収集する個人情報の種類</h3>
+                <div class="bg-neutral-50 p-6 rounded-lg">
+                  <p class="text-neutral-700 mb-4">当事業者は、以下の個人情報を収集することがあります：</p>
+                  <ul class="list-disc list-inside space-y-2 text-neutral-700">
+                    <li>お名前</li>
+                    <li>メールアドレス</li>
+                    <li>電話番号</li>
+                    <li>お問い合わせ内容</li>
+                    <li>その他、お客様が任意でご提供いただく情報</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div>
+                <h3 class="text-xl font-semibold text-accent-700 mb-4">2.2 個人情報の収集方法</h3>
+                <div class="bg-neutral-50 p-6 rounded-lg">
+                  <p class="text-neutral-700 mb-4">個人情報は、以下の方法により収集いたします：</p>
+                  <ul class="list-disc list-inside space-y-2 text-neutral-700">
+                    <li>お問い合わせフォームからの入力</li>
+                    <li>メールでの直接のやり取り</li>
+                    <li>電話でのやり取り</li>
+                    <li>その他、適法な方法による収集</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. 個人情報の利用目的 -->
+          <div class="mb-12 fade-in-up">
+            <h2 class="text-2xl font-bold text-accent-800 mb-6 border-l-4 border-primary-400 pl-4">
+              3. 個人情報の利用目的
+            </h2>
+            <div class="bg-neutral-50 p-6 rounded-lg">
+              <p class="text-neutral-700 mb-4">収集した個人情報は、以下の目的で利用いたします：</p>
+              <ul class="list-disc list-inside space-y-2 text-neutral-700">
+                <li>お問い合わせに対する回答・対応</li>
+                <li>WEB制作サービスの提供</li>
+                <li>見積もりの作成・提示</li>
+                <li>契約の締結・履行</li>
+                <li>アフターサポート・メンテナンスの提供</li>
+                <li>サービス向上のための分析・改善</li>
+                <li>重要なお知らせの配信</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 4. 個人情報の第三者提供について -->
+          <div class="mb-12 fade-in-up">
+            <h2 class="text-2xl font-bold text-accent-800 mb-6 border-l-4 border-primary-400 pl-4">
+              4. 個人情報の第三者提供について
+            </h2>
+            <div class="space-y-6">
+              <div class="bg-neutral-50 p-6 rounded-lg">
+                <p class="text-neutral-700 leading-relaxed">
+                  当事業者は、以下の場合を除き、お客様の同意を得ることなく個人情報を第三者に提供することはありません：
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-neutral-700 mt-4">
+                  <li>法令に基づく場合</li>
+                  <li>人の生命、身体または財産の保護のために必要がある場合</li>
+                  <li>公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合</li>
+                  <li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. 個人情報の管理について -->
+          <div class="mb-12 fade-in-up">
+            <h2 class="text-2xl font-bold text-accent-800 mb-6 border-l-4 border-primary-400 pl-4">
+              5. 個人情報の管理について
+            </h2>
+            <div class="bg-neutral-50 p-6 rounded-lg">
+              <p class="text-neutral-700 leading-relaxed">
+                当事業者は、個人情報の漏えい、滅失、毀損等を防止するため、適切なセキュリティ対策を実施し、
+                個人情報を安全に管理いたします。また、個人情報を取り扱う際は、
+                アクセス権限を適切に設定し、必要最小限の範囲でのみ利用いたします。
+              </p>
+            </div>
+          </div>
+
+          <!-- 6. 個人情報の開示・訂正・削除について -->
+          <div class="mb-12 fade-in-up">
+            <h2 class="text-2xl font-bold text-accent-800 mb-6 border-l-4 border-primary-400 pl-4">
+              6. 個人情報の開示・訂正・削除について
+            </h2>
+            <div class="bg-neutral-50 p-6 rounded-lg">
+              <p class="text-neutral-700 leading-relaxed">
+                お客様は、ご自身の個人情報について開示、訂正、削除を求めることができます。
+                これらのご請求については、お客様ご本人であることを確認させていただいた上で、
+                合理的な期間内に対応いたします。
+                ご請求は、下記のお問い合わせ先までご連絡ください。
+              </p>
+            </div>
+          </div>
+
+          <!-- 7. Cookieの使用について -->
+          <div class="mb-12 fade-in-up">
+            <h2 class="text-2xl font-bold text-accent-800 mb-6 border-l-4 border-primary-400 pl-4">
+              7. Cookieの使用について
+            </h2>
+            <div class="space-y-6">
+              <div class="bg-neutral-50 p-6 rounded-lg">
+                <p class="text-neutral-700 leading-relaxed">
+                  当サイトでは、サービス向上のため、Cookie（クッキー）を使用する場合があります。
+                  Cookieは、ウェブサイトがお客様のコンピューターに保存する小さなテキストファイルです。
+                  Cookieの使用を希望されない場合は、ブラウザの設定により無効にすることが可能です。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. アクセス解析ツールについて -->
+          <div class="mb-12 fade-in-up">
+            <h2 class="text-2xl font-bold text-accent-800 mb-6 border-l-4 border-primary-400 pl-4">
+              8. アクセス解析ツールについて
+            </h2>
+            <div class="bg-neutral-50 p-6 rounded-lg">
+              <p class="text-neutral-700 leading-relaxed">
+                当サイトでは、サイトの利用状況を把握し、サービス向上のため、
+                Google Analyticsなどのアクセス解析ツールを使用する場合があります。
+                これらのツールは、トラフィックデータの収集のためCookieを使用することがありますが、
+                個人を特定する情報は含まれません。
+              </p>
+            </div>
+          </div>
+
+          <!-- 9. プライバシーポリシーの変更について -->
+          <div class="mb-12 fade-in-up">
+            <h2 class="text-2xl font-bold text-accent-800 mb-6 border-l-4 border-primary-400 pl-4">
+              9. プライバシーポリシーの変更について
+            </h2>
+            <div class="bg-neutral-50 p-6 rounded-lg">
+              <p class="text-neutral-700 leading-relaxed">
+                当事業者は、法令の変更や事業内容の変更等により、本プライバシーポリシーを変更することがあります。
+                変更後のプライバシーポリシーは、当サイトに掲載した時点から効力を生じるものとします。
+                重要な変更については、適切な方法でお知らせいたします。
+              </p>
+            </div>
+          </div>
+
+          <!-- 10. お問い合わせ先 -->
+          <div class="mb-12 fade-in-up">
+            <h2 class="text-2xl font-bold text-accent-800 mb-6 border-l-4 border-primary-400 pl-4">
+              10. お問い合わせ先
+            </h2>
+            <div class="bg-gradient-to-r from-primary-50 to-accent-50 p-8 rounded-xl">
+              <div class="space-y-4">
+                <div>
+                  <h3 class="text-lg font-semibold text-accent-800 mb-2">個人情報の取り扱いに関するお問い合わせ</h3>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div class="flex items-center space-x-3">
+                    <svg class="w-6 h-6 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
+                    <div>
+                      <p class="text-sm text-neutral-600">メール</p>
+                      <a href="mailto:contact@webtailor.jp" class="text-primary-600 hover:text-primary-700 font-medium">
+                        contact@webtailor.jp
+                      </a>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <svg class="w-6 h-6 text-accent-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                      <p class="text-sm text-neutral-600">受付時間</p>
+                      <p class="text-neutral-700">平日 9:00-17:00</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-6">
+                  <p class="text-sm text-neutral-600">
+                    事業者名：WEBテーラー<br>
+                    代表者：[代表者名]<br>
+                    所在地：[所在地]
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 制定・改定履歴 -->
+          <div class="mb-12 fade-in-up">
+            <h2 class="text-2xl font-bold text-accent-800 mb-6 border-l-4 border-primary-400 pl-4">
+              制定・改定履歴
+            </h2>
+            <div class="bg-neutral-50 p-6 rounded-lg">
+              <ul class="space-y-2 text-neutral-700">
+                <li>2025年1月1日：プライバシーポリシー制定</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- ページ下部のCTA -->
+          <div class="text-center mt-16 fade-in-up">
+            <div class="space-y-6">
+              <p class="text-lg text-neutral-700">
+                ご不明な点がございましたら、<br class="sm:hidden">
+                お気軽にお問い合わせください。
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="/contact" class="btn-gradient">
+                  お問い合わせ
+                </a>
+                <a href="/" class="bg-neutral-200 hover:bg-neutral-300 text-neutral-800 px-8 py-4 rounded-lg font-medium transition-all duration-300">
+                  トップページに戻る
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* プロースタイルのカスタマイズ */
+  .prose {
+    color: #374151;
+  }
+  
+  .prose h2 {
+    color: #1e40af;
+  }
+  
+  .prose h3 {
+    color: #1f2937;
+  }
+  
+  /* アニメーション効果 */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* セクション間の余白調整 */
+  .section-padding {
+    padding: 4rem 0;
+  }
+  
+  /* レスポンシブ対応 */
+  @media (max-width: 768px) {
+    .prose {
+      font-size: 16px;
+    }
+    
+    .prose h2 {
+      font-size: 1.5rem;
+    }
+    
+    .prose h3 {
+      font-size: 1.25rem;
+    }
+  }
+</style>
