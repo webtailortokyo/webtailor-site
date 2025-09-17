@@ -30,7 +30,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="text-center space-y-8">
+      <div class="grid gap-10 md:grid-cols-2 items-center">
+        <div class="text-center space-y-8">
         <!-- キャッチコピー -->
         <div class="space-y-6 fade-in-up">
 
@@ -50,17 +51,30 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </p>
         </div>
 
-        <!-- CTA ボタン -->
-        <div
-          class="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-up"
-          style="animation-delay: 0.3s;"
-        >
-          <a
-            href="#contact"
-            class="btn-gradient text-lg px-8 py-4 inline-block"
+          <!-- CTA ボタン -->
+          <div
+            class="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-up"
+            style="animation-delay: 0.3s;"
           >
-            無料相談はこちら
-          </a>
+            <a
+              href="#contact"
+              class="btn-gradient text-lg px-8 py-4 inline-block"
+            >
+              無料相談はこちら
+            </a>
+          </div>
+        </div>
+        <!-- ヒーロー右側イラスト（A: 1を配置） -->
+        <div class="flex justify-center md:justify-end fade-in-up" style="animation-delay: 0.2s;">
+          <img
+            src="/images/isometric-1.svg"
+            alt="アイソメトリック イラスト 1"
+            class="w-full max-w-md md:max-w-lg h-auto drop-shadow-lg"
+            width="640"
+            height="480"
+            loading="eager"
+            decoding="async"
+          />
         </div>
       </div>
     </div>
@@ -205,6 +219,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </svg>
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT直下のイラスト（B: 2を配置） -->
+  <section id="illustration-after-about" class="py-12 bg-neutral-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto flex justify-center fade-in-up">
+        <img src="/images/isometric-2.svg" alt="アイソメトリック イラスト 2" class="w-full max-w-2xl h-auto rounded-xl shadow-md" loading="lazy" width="640" height="480" />
       </div>
     </div>
   </section>
@@ -444,6 +467,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICINGの直前イラスト（D: 3を配置） -->
+  <section id="illustration-before-pricing" class="py-12 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-5xl mx-auto flex justify-center fade-in-up">
+        <img src="/images/isometric-3.svg" alt="アイソメトリック イラスト 3" class="w-full max-w-3xl h-auto rounded-xl shadow-md" loading="lazy" width="640" height="480" />
       </div>
     </div>
   </section>

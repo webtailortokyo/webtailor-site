@@ -1,0 +1,21 @@
+<svg width="320" height="240" viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Isometric placeholder 3">
+  <defs>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22ccf0"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="240" rx="16" fill="#f8fafc"/>
+  <g transform="translate(48,36)">
+    <polygon points="96,0 192,56 96,112 0,56" fill="url(#g3)" opacity="0.9"/>
+    <polygon points="96,112 192,56 192,144 96,200" fill="#34d399" opacity="0.45"/>
+    <polygon points="96,112 0,56 0,144 96,200" fill="#22ccf0" opacity="0.35"/>
+    <g transform="translate(28,22)">
+      <circle cx="36" cy="20" r="12" fill="#ffffff" opacity="0.95"/>
+      <rect x="16" y="44" width="80" height="10" rx="5" fill="#22ccf0" opacity="0.6"/>
+    </g>
+  </g>
+  <circle cx="268" cy="48" r="7" fill="#34d399" opacity="0.6"/>
+  <circle cx="284" cy="68" r="4" fill="#22ccf0" opacity="0.5"/>
+</svg>
+
