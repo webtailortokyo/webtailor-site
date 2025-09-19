@@ -178,7 +178,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     
     // ページ読み込み時のアニメーション
     setTimeout(() => {
-      const confettiPieces = document.querySelectorAll('.confetti-piece');
+      const confettiPieces = document.querySelectorAll<HTMLElement>('.confetti-piece');
       confettiPieces.forEach((piece, index) => {
         setTimeout(() => {
           piece.style.opacity = '1';

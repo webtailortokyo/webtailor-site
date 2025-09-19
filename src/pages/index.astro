@@ -101,7 +101,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <!-- ABOUT セクション -->
   <section id="about" class="section-padding bg-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto">
+      <div class="max-w-6xl mx-auto">
         <!-- セクションヘッダー -->
         <div class="text-center mb-16 fade-in-up">
           <h2 class="text-3xl md:text-4xl font-bold text-accent-800 mb-6">
@@ -116,7 +116,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           >
           </div>
         </div>
+        
+        <div class="grid gap-8 md:grid-cols-2 items-center">
+          <!-- 左：イラスト（B） -->
+          <div class="fade-in-up">
+            <img src="/images/isometric-2.svg" alt="アイソメトリック イラスト 2" class="w-full max-w-xl h-auto rounded-xl shadow-md mx-auto" loading="lazy" width="640" height="480" />
+          </div>
 
+          <!-- 右：テキスト -->
+          <div>
         <!-- プロフィール内容 -->
         <div
           class="space-y-8 text-lg leading-relaxed text-neutral-700 fade-in-up"
@@ -219,18 +227,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </svg>
           </a>
         </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT直下のイラスト（B: 2を配置） -->
-  <section id="illustration-after-about" class="py-12 bg-neutral-50">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto flex justify-center fade-in-up">
-        <img src="/images/isometric-2.svg" alt="アイソメトリック イラスト 2" class="w-full max-w-2xl h-auto rounded-xl shadow-md" loading="lazy" width="640" height="480" />
-      </div>
-    </div>
-  </section>
+  
 
   <!-- WORKS & SKILLS セクション -->
   <section id="works" class="section-padding bg-neutral-50">
@@ -471,14 +474,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- PRICINGの直前イラスト（D: 3を配置） -->
-  <section id="illustration-before-pricing" class="py-12 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-5xl mx-auto flex justify-center fade-in-up">
-        <img src="/images/isometric-3.svg" alt="アイソメトリック イラスト 3" class="w-full max-w-3xl h-auto rounded-xl shadow-md" loading="lazy" width="640" height="480" />
-      </div>
-    </div>
-  </section>
+  
 
   <!-- PRICING セクション -->
   <section id="pricing" class="section-padding bg-white">

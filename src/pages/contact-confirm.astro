@@ -269,15 +269,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
     
     // 隠しフォームにデータを設定する関数
-    function setHiddenFormData(data) {
-      document.getElementById('hidden-name').value = data.name || '';
-      document.getElementById('hidden-email').value = data.email || '';
-      document.getElementById('hidden-phone').value = data.phone || '';
-      document.getElementById('hidden-subject').value = data.subject || '';
-      document.getElementById('hidden-budget').value = data.budget || '';
-      document.getElementById('hidden-deadline').value = data.deadline || '';
-      document.getElementById('hidden-message').value = data.message || '';
+    function setHiddenFormData(data: any) {
+      (document.getElementById('hidden-name') as HTMLInputElement).value = data.name || '';
+      (document.getElementById('hidden-email') as HTMLInputElement).value = data.email || '';
+      (document.getElementById('hidden-phone') as HTMLInputElement).value = data.phone || '';
+      (document.getElementById('hidden-subject') as HTMLInputElement).value = data.subject || '';
+      (document.getElementById('hidden-budget') as HTMLInputElement).value = data.budget || '';
+      (document.getElementById('hidden-deadline') as HTMLInputElement).value = data.deadline || '';
+      (document.getElementById('hidden-message') as HTMLInputElement).value = data.message || '';
     }
+
     
     // ページを離れる際の警告（データ保護のため）
     window.addEventListener('beforeunload', function(e) {

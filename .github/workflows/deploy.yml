@@ -1,0 +1,34 @@
+name: Deploy to Lolipop
+
+on:
+  push:
+    branches:
+      - main  # ← mainにpushしたらデプロイ
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  # Astroで使ってるNodeのバージョン
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.ftp.lolipop.jp }}
+          username: ${{ secrets.raindrop.jp-webtailor }}
+          password: ${{ secrets.hiro0321 }}
+          local-dir: dist
+          server-dir: webtailor  # ロリポップの公開ディレクトリ

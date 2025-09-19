@@ -251,7 +251,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <!-- フォーム用JavaScript -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('contact-form');
+    const form = document.getElementById('contact-form') as HTMLFormElement;
     const submitBtn = document.getElementById('submit-btn');
     const submitText = document.getElementById('submit-text');
     const loadingSpinner = document.getElementById('loading-spinner');

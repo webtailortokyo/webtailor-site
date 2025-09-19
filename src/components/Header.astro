@@ -126,7 +126,6 @@ const isActive = (href: string) => {
     });
 
     // スクロール時のヘッダー背景変更
-    let lastScroll = 0;
     const header = document.querySelector('header');
     
     window.addEventListener('scroll', () => {
@@ -137,8 +136,6 @@ const isActive = (href: string) => {
       } else {
         header?.classList.remove('bg-white/90');
       }
-      
-      lastScroll = currentScroll;
     });
   });
 </script>
