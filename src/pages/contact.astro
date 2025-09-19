@@ -252,9 +252,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contact-form') as HTMLFormElement;
-    const submitBtn = document.getElementById('submit-btn');
-    const submitText = document.getElementById('submit-text');
-    const loadingSpinner = document.getElementById('loading-spinner');
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const submitText = document.getElementById('submit-text') as HTMLSpanElement;
+    const loadingSpinner = document.getElementById('loading-spinner') as HTMLDivElement;
     
     // フォームバリデーション
     function validateForm() {
@@ -264,7 +264,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const requiredFields = ['name', 'email', 'subject', 'message'];
       
       requiredFields.forEach(field => {
-        const input = document.getElementById(field);
+        const input = document.getElementById(field) as HTMLInputElement;
         const errorDiv = document.getElementById(field + '-error');
         
         if (!input.value.trim()) {
@@ -279,8 +279,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       });
       
       // メールアドレス形式のチェック
-      const email = document.getElementById('email');
-      const emailError = document.getElementById('email-error');
+      const email = document.getElementById('email') as HTMLInputElement;
+      const emailError = document.getElementById('email-error') as HTMLDivElement;
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       
       if (email.value && !emailPattern.test(email.value)) {
@@ -291,8 +291,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       }
       
       // プライバシーポリシー同意のチェック
-      const privacy = document.getElementById('privacy');
-      const privacyError = document.getElementById('privacy-error');
+      const privacy = document.getElementById('privacy') as HTMLInputElement;
+      const privacyError = document.getElementById('privacy-error') as HTMLDivElement;
       
       if (!privacy.checked) {
         privacyError.textContent = 'プライバシーポリシーに同意してください。';
@@ -307,9 +307,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     
     // リアルタイムバリデーション
     ['name', 'email', 'subject', 'message'].forEach(field => {
-      const input = document.getElementById(field);
+      const input = document.getElementById(field) as HTMLInputElement;
       input.addEventListener('blur', function() {
-        const errorDiv = document.getElementById(field + '-error');
+        const errorDiv = document.getElementById(field + '-error') as HTMLDivElement;
         
         if (!this.value.trim()) {
           errorDiv.textContent = 'この項目は必須です。';

@@ -176,7 +176,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const confirmContent = document.getElementById('confirm-content');
     const noDataWarning = document.getElementById('no-data-warning');
     const backBtn = document.getElementById('back-btn');
-    const sendBtn = document.getElementById('send-btn');
+    const sendBtn = document.getElementById('send-btn') as HTMLButtonElement;
     const sendForm = document.getElementById('send-form');
     const sendText = document.getElementById('send-text');
     const sendSpinner = document.getElementById('send-spinner');
