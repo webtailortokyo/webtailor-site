@@ -17,7 +17,6 @@ ini_set('display_errors', 1);
 session_start();
 
 // 設定
-const ADMIN_EMAIL = 'contact@webtailor.jp'; // 管理者メールアドレス
 const SITE_NAME = 'WEBテーラー';
 const SITE_URL = 'https://webtailor.jp'; // 実際のサイトURLに変更
 
@@ -121,14 +120,11 @@ function generate_auto_reply($data) {
     $message .= "今しばらくお待ちください。\n\n";
     $message .= "なお、このメールは自動送信されています。\n";
     $message .= "このメールに直接ご返信いただいても結構です。\n\n";
-    $message .= "もしお急ぎの場合は、直接下記メールアドレスまでご連絡ください。\n";
-    $message .= "連絡先: " . ADMIN_EMAIL . "\n";
-    $message .= "営業時間: 平日 9:00-17:00\n\n";
+    $message .= "もしお急ぎの場合は、お問い合わせフォームから再度ご連絡ください。\n\n";
     $message .= "改めまして、お問い合わせありがとうございました。\n";
     $message .= "お客様のお仕事のお手伝いができることを楽しみにしております。\n\n";
     $message .= "---\n";
     $message .= "WEBテーラー\n";
-    $message .= "メール: " . ADMIN_EMAIL . "\n";
     $message .= "サイト: " . SITE_URL . "\n";
     
     return $message;
@@ -169,19 +165,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'Content-Type: text/plain; charset=UTF-8'
         ];
         
-        $admin_mail_sent = send_email(
-            ADMIN_EMAIL,
-            $admin_subject,
-            $admin_message,
-            implode("\r\n", $admin_headers)
-        );
+        // 管理者向けメール送信は無効化
+        $admin_mail_sent = true;
         
         // 自動返信メール送信
         $reply_subject = '【' . SITE_NAME . '】お問い合わせありがとうございます';
         $reply_message = generate_auto_reply($form_data);
         $reply_headers = [
-            'From: ' . ADMIN_EMAIL,
-            'Reply-To: ' . ADMIN_EMAIL,
+            'From: noreply@webtailor.jp',
+            'Reply-To: noreply@webtailor.jp',
             'X-Mailer: PHP/' . phpversion(),
             'Content-Type: text/plain; charset=UTF-8'
         ];
