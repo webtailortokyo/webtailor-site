@@ -71,6 +71,10 @@ export default {
           '50%': { transform: 'translateY(-20px)' },
         },
       },
+      // カスタムユーティリティクラス
+      backgroundImage: {
+        'gradient-primary': 'linear-gradient(135deg, #f0fdff 0%, #ccf7fe 50%, #99effd 100%)',
+      },
     },
   },
   plugins: [],
