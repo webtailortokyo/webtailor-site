@@ -24,11 +24,15 @@ const isActive = (href: string) => {
 
 <header class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-primary-100/30">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between py-4">
+    <div class="flex items-center justify-between">
       <!-- ロゴ -->
       <div class="flex items-center">
-        <a href="/" class="text-2xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent hover:from-primary-500 hover:to-accent-500 transition-all duration-300">
-          WEBテーラー
+        <a href="/" class="flex items-center">
+          <img 
+            src="/images/header_logo.png" 
+            alt="WEBテーラー" 
+            class="h-16 w-auto hover:opacity-80 transition-opacity duration-300"
+          />
         </a>
       </div>
 
