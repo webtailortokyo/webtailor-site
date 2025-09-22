@@ -32,30 +32,24 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="grid gap-6 md:grid-cols-5 items-center">
         <div class="text-center space-y-8 md:col-span-3">
-        <!-- キャッチコピー -->
-        <div class="space-y-6 fade-in-up">
-
-          <p
-            class="text-2xl md:text-2xl lg:text-4xl font-bold text-accent-800 mt-8"
-          >
-            誠実に、確かな仕上がりを。</p>
-          <p
-            class="text-2xl md:text-2xl lg:text-4xl font-bold text-accent-800"
-          >
-            <span
-              class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent"
+          <!-- キャッチコピー -->
+          <div class="space-y-6 fade-in-up hero-wrap">
+            <p
+              class="hero-lead font-bold text-accent-800 mt-8"
             >
-              WEBを仕立てる
-            </span>パートナー
-          </p>
-          
-          <div class="flex justify-end">
-            <h1 class="text-lg md:text-xl text-accent-700 font-medium">
-              WEBテーラー
-            </h1>
+              誠実に、確かな仕上がりを。<br>
+              <span
+                class="bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent"
+              >
+                WEBを仕立てる
+              </span>パートナー
+            </p>         
+            <div class="flex justify-end">
+              <h1 class="hero-sub text-accent-700 font-medium">
+                WEBテーラー
+              </h1>
+            </div>
           </div>
-
-        </div>
 
           <!-- CTA ボタン -->
           <div
@@ -714,6 +708,24 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   /* 装飾的要素のアニメーション */
   .geometric-float {
     animation: geometricFloat 8s ease-in-out infinite;
+  }
+
+  /* ヒーローテキストのラッパー */
+  .hero-wrap {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ヒーローテキストのフォントサイズ */
+  .hero-lead {
+    font-size: clamp(20px, 14px + 1.74vw, 36px);
+    line-height: 1.6;
+  }
+
+  .hero-sub {
+    font-size: clamp(12px, 12px + 1.3vw, 22px);
+    line-height: 1.25;
   }
 
   /* レスポンシブ対応の改善 */
