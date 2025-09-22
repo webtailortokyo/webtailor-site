@@ -30,8 +30,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid gap-6 md:grid-cols-2 items-center">
-        <div class="text-center space-y-8">
+      <div class="grid gap-6 md:grid-cols-5 items-center">
+        <div class="text-center space-y-8 md:col-span-3">
         <!-- キャッチコピー -->
         <div class="space-y-6 fade-in-up">
 
@@ -49,9 +49,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </span>パートナー
           </p>
           
-          <h1 class="text-xl md:text-2xl text-accent-700 font-medium">
-            WEBテーラー
-          </h1>
+          <div class="flex justify-end">
+            <h1 class="text-lg md:text-xl text-accent-700 font-medium">
+              WEBテーラー
+            </h1>
+          </div>
 
         </div>
 
@@ -69,7 +71,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </div>
         </div>
         <!-- ヒーロー右側イラスト（A: 1を配置） -->
-        <div class="flex justify-center md:justify-end fade-in-up" style="animation-delay: 0.2s;">
+        <div class="flex justify-center md:justify-end fade-in-up md:col-span-2" style="animation-delay: 0.2s;">
           <img
             src="/images/isometric-1.svg"
             alt="アイソメトリック イラスト 1"
