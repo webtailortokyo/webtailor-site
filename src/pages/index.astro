@@ -98,123 +98,64 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- ABOUT セクション -->
   <section id="about" class="section-padding bg-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-6xl mx-auto">
+        
         <!-- セクションヘッダー -->
         <div class="text-center mb-16 fade-in-up">
           <h2 class="text-3xl md:text-4xl font-bold text-accent-800 mb-6">
             ABOUT
-            <span
-              class="block text-xl md:text-2xl text-accent-600 mt-2 font-normal"
-              >プロフィール</span
-            >
+            <span class="block text-xl md:text-2xl text-accent-600 mt-2 font-normal">
+              プロフィール
+            </span>
           </h2>
-          <div
-            class="w-24 h-1 bg-gradient-to-r from-primary-400 to-accent-500 mx-auto"
-          >
-          </div>
+          <div class="w-24 h-1 bg-gradient-to-r from-amber-300 via-amber-500 to-amber-600 mx-auto rounded-full"></div>
         </div>
         
         <div class="grid gap-8 md:grid-cols-2 items-center">
-          <!-- 左：イラスト（B） -->
+          
+          <!-- 左：イラスト -->
           <div class="fade-in-up">
-            <img src="/images/isometric-2.svg" alt="アイソメトリック イラスト 2" class="w-full max-w-xl h-auto rounded-xl shadow-md mx-auto" loading="lazy" width="640" height="480" />
-          </div>
-
-          <!-- 右：テキスト -->
-          <div>
-        <!-- プロフィール内容 -->
-        <div
-          class="space-y-8 text-lg leading-relaxed text-neutral-700 fade-in-up"
-        >
-          <p
-            class="first-letter:text-4xl first-letter:font-bold first-letter:text-primary-600 first-letter:float-left first-letter:mr-2 first-letter:mt-1"
-          >
-            国立大学教育学部物理専攻卒業。<br />
-            事務職・C++組込み系プログラマーを経て、育児のため専業主婦に。その後WEB制作のコーディングを学び始め、現在はフリーランスのコーダーとして活動しております。<br
+            <img 
+              src="/images/isometric-2.svg" 
+              alt="アイソメトリック イラスト 2" 
+              class="w-full max-w-xl h-auto rounded-xl shadow-md mx-auto bg-white p-4"
+              loading="lazy" 
+              width="640" 
+              height="480" 
             />
-            単発のサイトコーディングや時給制のお仕事などを重ね、<strong
-              class="text-accent-700">コーダー歴は4年</strong
-            >となりました。
-          </p>
-
-          <p>これまでの経験を通じて、</p>
-
-          <div
-            class="bg-gradient-to-r from-primary-50 to-accent-50 p-8 rounded-xl"
-          >
-            <ul class="space-y-4 text-accent-800">
-              <li class="flex items-start space-x-3">
-                <svg
-                  class="w-6 h-6 text-primary-500 mt-0.5 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"></path>
-                </svg>
-                <span><strong>丁寧なやり取り</strong></span>
-              </li>
-              <li class="flex items-start space-x-3">
-                <svg
-                  class="w-6 h-6 text-primary-500 mt-0.5 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"></path>
-                </svg>
-                <span
-                  ><strong>メンテナンス性の高いコード</strong
-                  >を意識した実装</span
-                >
-              </li>
-              <li class="flex items-start space-x-3">
-                <svg
-                  class="w-6 h-6 text-primary-500 mt-0.5 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"></path>
-                </svg>
-                <span><strong>自走力のある働き方</strong></span>
-              </li>
-            </ul>
           </div>
-
-          <p>を大切にしてきました。</p>
-
-          <p>
-            また、<strong class="text-accent-700"
-              >相談しやすい雰囲気づくり</strong
-            >や、<strong class="text-accent-700"
-              >専門用語をかみ砕いた分かりやすい説明</strong
-            >を心がけ、安心してお任せいただけるよう努めております。
-          </p>
-
-          <p>
-            今後はWEBアプリ開発のお仕事にも取り組み、幅を広げていきたいと考えております。
-          </p>
+  
+          <!-- 右：テキスト -->
+          <div class="space-y-6 text-lg leading-relaxed text-neutral-700 fade-in-up">
+            <div class="bg-primary-50 rounded-xl p-5 shadow-sm">
+              <p><span class="font-semibold">理系のバックグラウンド：</span>国立大学で物理を専攻。論理的に考える力が強みです。</p>
+            </div>
+            <div class="bg-primary-50 rounded-xl p-5 shadow-sm">
+              <p><span class="font-semibold">C++プログラマー時代：</span>組込み系ソフトの開発を経験。堅実でメンテナンス性の高いコードを書く姿勢はこの時に培いました。</p>
+            </div>
+            <div class="bg-primary-50 rounded-xl p-5 shadow-sm">
+              <p><span class="font-semibold">子育て期間：</span>しばらく専業主婦として育児に専念。</p>
+            </div>
+            <div class="bg-primary-50 rounded-xl p-5 shadow-sm">
+              <p><span class="font-semibold">Webコーディングとの出会い：</span>その後、自学（本・ネット・AIツール）でWeb制作を学び、再び開発の世界へ。</p>
+            </div>
+            <div class="bg-primary-50 rounded-xl p-5 shadow-sm">
+              <p><span class="font-semibold">現在：</span>フリーランスのコーダーとして活動中。数社と時給制の業務委託契約をしつつ、単発案件も請け負っています。デザイン再現度の高さと、わかりやすいコミュニケーションを心がけています。</p>
+            </div>
+          </div>
         </div>
-
+  
         <!-- プロフィール詳細へのリンク -->
         <div class="text-center mt-12 fade-in-up">
           <a
             href="/profile"
-            class="inline-flex items-center space-x-2 text-primary-600 hover:text-primary-700 font-medium transition-colors duration-200"
+            class="inline-flex items-center px-6 py-3 rounded-full bg-primary-600 hover:bg-primary-700 text-white font-medium shadow-md transition-all duration-200"
           >
             <span>より詳しいプロフィールを見る</span>
             <svg
-              class="w-5 h-5"
+              class="w-5 h-5 ml-2"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -223,16 +164,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="2"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
             </svg>
           </a>
-        </div>
-          </div>
         </div>
       </div>
     </div>
   </section>
-
+  
   
 
   <!-- WORKS & SKILLS セクション -->
@@ -248,9 +188,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               >制作実績・スキル</span
             >
           </h2>
-          <div
-            class="w-24 h-1 bg-gradient-to-r from-primary-400 to-accent-500 mx-auto"
-          >
+          <div class="w-24 h-1 bg-gradient-to-r from-amber-300 via-amber-500 to-amber-600 mx-auto rounded-full"></div>
           </div>
         </div>
 
@@ -490,18 +428,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             >
           </h2>
           <div
-            class="w-24 h-1 bg-gradient-to-r from-primary-400 to-accent-500 mx-auto"
+          <div class="w-24 h-1 bg-gradient-to-r from-amber-300 via-amber-500 to-amber-600 mx-auto rounded-full"></div>
+
           >
           </div>
         </div>
 
         <!-- 料金説明 -->
         <div
-          class="bg-gradient-to-r from-amber-50 to-orange-50 p-8 rounded-xl border border-amber-200/50 mb-8 fade-in-up"
+          class="bg-gradient-to-r from-primary-50 to-accent-50 p-8 rounded-xl border border-primary-200/50 mb-8 fade-in-up"
         >
           <div class="text-center mb-6">
             <svg
-              class="w-12 h-12 text-amber-500 mx-auto mb-4"
+              class="w-12 h-12 text-primary-500 mx-auto mb-4"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -510,13 +449,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                 clip-rule="evenodd"></path>
             </svg>
-            <p class="text-lg text-amber-800 font-medium">
+            <p class="text-lg text-primary-800 font-medium">
               下記はあくまで目安料金です。<br />
               プロジェクトの内容や規模に応じて柔軟に対応いたしますので、<br />
               まずは一度ご相談ください。
             </p>
           </div>
         </div>
+      
 
         <!-- 料金表 -->
         <div class="grid md:grid-cols-3 gap-6 mb-8">
@@ -637,9 +577,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               >お問い合わせ</span
             >
           </h2>
-          <div
-            class="w-24 h-1 bg-gradient-to-r from-primary-400 to-accent-500 mx-auto"
-          >
+          <div class="w-24 h-1 bg-gradient-to-r from-amber-300 via-amber-500 to-amber-600 mx-auto rounded-full"></div>
           </div>
         </div>
 
