@@ -283,6 +283,7 @@
   }
   
   .btn-gradient:hover {
+    background: linear-gradient(to right, #fbbf24, #f59e0b); /* from-amber-400 to-amber-500 */
     transform: translateY(-2px) scale(1.02);
   }
 }
