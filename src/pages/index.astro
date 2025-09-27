@@ -30,12 +30,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid gap-6 md:grid-cols-5 items-center">
-        <div class="text-center space-y-8 md:col-span-3">
-          <!-- キャッチコピー -->
+      <div class="grid gap-6 md:grid-cols-10 items-center">
+        <div class="text-center space-y-8 md:col-span-7">
           <div class="space-y-6 fade-in-up hero-wrap">
             <p
-              class="hero-lead font-bold text-accent-800 mt-8"
+              class="text-[clamp(1.5rem,0.962rem+2.39vw,2.875rem)] font-bold text-accent-800 mt-8"
             >
               誠実に、確かな仕上がりを。<br>
               <span
@@ -43,15 +42,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               >
                 WEBを仕立てる
               </span>パートナー
-            </p>         
+            </p> 
             <div class="flex justify-end">
-              <h1 class="hero-sub text-accent-700 font-medium">
+              <h1 class="text-[clamp(0.75rem,0.505rem+1.09vw,1.375rem)] text-accent-700 font-medium">
                 WEBテーラー
               </h1>
             </div>
           </div>
-
-          <!-- CTA ボタン -->
+    
           <div
             class="flex flex-col sm:flex-row gap-4 justify-center items-center fade-in-up"
             style="animation-delay: 0.3s;"
@@ -64,8 +62,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             </a>
           </div>
         </div>
-        <!-- ヒーロー右側イラスト（A: 1を配置） -->
-        <div class="flex justify-center md:justify-end fade-in-up md:col-span-2" style="animation-delay: 0.2s;">
+        <div class="flex justify-center md:justify-end fade-in-up md:col-span-3" style="animation-delay: 0.2s;">
           <img
             src="/images/key_visual.png"
             alt="プロフィール画像"
@@ -113,9 +110,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <div class="w-24 h-1 bg-amber-400 mx-auto rounded-full"></div>
         </div>
 
-        <div class="grid gap-8 md:grid-cols-2 items-center">  
-          <!-- 左：イラスト -->
-          <div class="fade-in-up">
+        <div class="grid gap-8 md:grid-cols-3 items-center"> 
+          <div class="fade-in-up md:col-span-1">
             <img 
               src="/images/profile.png" 
               alt="アイソメトリック イラスト 2" 
@@ -125,9 +121,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               height="1536" 
             />
           </div>
-  
-          <!-- 右：テキスト -->
-          <div class="space-y-6 text-lg leading-relaxed text-neutral-700 fade-in-up">
+        
+          <div class="space-y-6 text-lg leading-relaxed text-neutral-700 fade-in-up md:col-span-2">
             <div class="bg-primary-50 rounded-xl p-5 shadow-sm">
               <p><span class="font-semibold">理系のバックグラウンド：</span>国立大学で物理を専攻。論理的に考える力が強みです。</p>
             </div>
@@ -210,14 +205,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 基本スキル
               </h3>
               <p class="text-lg text-neutral-700 mb-4">
-                レンタルサーバー操作、ホスティングサービス利用、Git、Docker<br
+                レンタルサーバー・ホスティングサービス操作、Git、Dockerなど<br
                 />
-                <strong class="text-accent-700"
-                  >Xserver・ロリポップ・Firebase・Netlify</strong
-                > に対応可能です。
+                Google Workspace, Microsoft EXCEL/WORD, Zoomなど、Slackなど
               </p>
               <a
-                href="https://github.com"
+                href="https://github.com/webtailortokyo"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center space-x-2 text-primary-600 hover:text-primary-700 font-medium transition-colors duration-200"
@@ -253,7 +246,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                 HTML / CSS / JavaScript コーディング
               </h3>
               <p class="text-neutral-700">
-                デザインカンプからのLPサイトコーディングに対応。<br />
+                デザインカンプからのLPやサイトのコーディングに対応。<br />
                 デザイナー様の意図を正確に再現し、軽快に動作するサイトを実装します。
               </p>
             </div>
@@ -273,12 +266,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                     d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
                     clip-rule="evenodd"></path>
                 </svg>
-                WordPress サイト制作・修正
+                WordPress サイト制作
               </h3>
               <p class="text-neutral-700">
-                デザインカンプや既存デザインと統一感を保ちながら追加・修正を行います。<br
+                デザインカンプからオリジナルテーマを作成します。カスタム投稿、検索機能などを実装可能です。<br
                 />
-                オリジナルテーマ作成、カスタム投稿、検索機能などを実装可能です。
+                また、既存サイトの修正や機能追加なども可能です。
               </p>
             </div>
 
@@ -319,7 +312,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                     d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
                     clip-rule="evenodd"></path>
                 </svg>
-                WEB開発機能追加（チーム開発）
+                WEB開発（機能追加など）
               </h3>
               <p class="text-neutral-700">
                 <strong class="text-accent-700"
@@ -350,23 +343,23 @@ import BaseLayout from "../layouts/BaseLayout.astro";
               </h3>
               <p class="text-lg text-neutral-700 mb-4">
                 <strong class="text-accent-700"
-                  >使用スキル：ClaudeCode、Cursor、ChatGPT、Gemini、Claude</strong
+                  >使用ツール：ClaudeCode、Cursor、ChatGPT、Gemini、Claude</strong
                 ><br />
-                本サイトをAIツールを活用して制作しました。
+                本サイトをAIツールを活用して制作しました。AIが作成したデザインを自然なデザインに修正しております。文章やイラストもAIで作成しております。
               </p>
               <div class="bg-white/60 p-6 rounded-lg">
                 <ul class="space-y-2 text-neutral-700">
                   <li class="flex items-center space-x-3">
                     <span class="w-2 h-2 bg-primary-400 rounded-full"></span>
-                    <span>構成・文章・デザインプロンプト作成：約60分</span>
+                    <span>構成・文章・デザインプロンプト作成：約120分</span>
                   </li>
                   <li class="flex items-center space-x-3">
                     <span class="w-2 h-2 bg-primary-400 rounded-full"></span>
-                    <span>ClaudeCodeによるコーディング：約10分</span>
+                    <span>ClaudeCodeによるコーディング：約30分</span>
                   </li>
                   <li class="flex items-center space-x-3">
                     <span class="w-2 h-2 bg-primary-400 rounded-full"></span>
-                    <span>調整作業：約60分</span>
+                    <span>調整作業：約180分</span>
                   </li>
                 </ul>
               </div>
@@ -454,7 +447,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <!-- 料金表 -->
         <div class="grid md:grid-cols-3 gap-6 mb-8">
-          <!-- ランディングページ制作 -->
+          <!-- WEBサイト制作 -->
           <div
             class="glass-effect p-8 rounded-xl card-hover fade-in-up text-center"
           >
@@ -470,17 +463,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                   clip-rule="evenodd"></path>
               </svg>
               <h3 class="text-xl font-bold text-accent-800 mb-2">
-                ランディングページ制作
+                WEBサイト制作
               </h3>
-              <p class="text-sm text-neutral-600">(1ページ)</p>
+              <p class="text-sm text-neutral-600">(LPや複数ページサイト)</p>
             </div>
             <div class="text-3xl font-bold text-primary-600 mb-2">
-              〇〇万円<span class="text-lg">〜</span>
+              10万円<span class="text-lg">〜</span>
             </div>
-            <p class="text-sm text-neutral-600">レスポンシブ対応込み</p>
+            <p class="text-sm text-neutral-600">デザインはデザイナー作成・AI作成からお選びいただけます</p>
           </div>
 
-          <!-- WordPressテーマ制作 -->
+          <!-- コーディング -->
           <div
             class="glass-effect p-8 rounded-xl card-hover fade-in-up text-center"
           >
@@ -496,17 +489,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                   clip-rule="evenodd"></path>
               </svg>
               <h3 class="text-xl font-bold text-accent-800 mb-2">
-                WordPressテーマ制作
+                コーディング
               </h3>
-              <p class="text-sm text-neutral-600">(オリジナルテーマ)</p>
+              <p class="text-sm text-neutral-600">(HTML/CSS, WordPressなど)</p>
             </div>
             <div class="text-3xl font-bold text-primary-600 mb-2">
-              〇〇万円<span class="text-lg">〜</span>
+              3万円<span class="text-lg">〜</span>
             </div>
-            <p class="text-sm text-neutral-600">カスタム投稿対応</p>
+            <p class="text-sm text-neutral-600">LPコーディングからWordPressオリジナルテーマ作成まで</p>
           </div>
 
-          <!-- サイト修正・更新 -->
+          <!-- 時給契約 -->
           <div
             class="glass-effect p-8 rounded-xl card-hover fade-in-up text-center"
           >
@@ -522,12 +515,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                   clip-rule="evenodd"></path>
               </svg>
               <h3 class="text-xl font-bold text-accent-800 mb-2">
-                既存サイトの<br />修正・更新
+                時給契約
               </h3>
-              <p class="text-sm text-neutral-600">(時給制)</p>
+              <p class="text-sm text-neutral-600">(月単位の業務委託契約)</p>
             </div>
             <div class="text-3xl font-bold text-primary-600 mb-2">
-              〇〇円<span class="text-lg">〜</span>
+              2,000円<span class="text-lg">〜</span>
             </div>
             <p class="text-sm text-neutral-600">1時間あたり</p>
           </div>
@@ -539,7 +532,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <p class="flex items-start space-x-2">
               <span class="text-amber-500 mt-1">※</span>
               <span
-                >上記料金には、デザイン費用・サーバー代・ドメイン代は含まれません。</span
+                >上記料金には、サーバー代・ドメイン代は含まれません。</span
               >
             </p>
             <p class="flex items-start space-x-2">
@@ -648,16 +641,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     margin-right: auto;
   }
 
-  /* ヒーローテキストのフォントサイズ */
-  .hero-lead {
-    font-size: clamp(20px, 14px + 1.74vw, 36px);
-    line-height: 1.6;
-  }
-
-  .hero-sub {
-    font-size: clamp(12px, 12px + 1.3vw, 22px);
-    line-height: 1.25;
-  }
 
   /* レスポンシブ対応の改善 */
   @media (max-width: 768px) {
