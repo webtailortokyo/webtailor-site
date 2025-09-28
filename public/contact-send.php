@@ -19,7 +19,7 @@ session_start();
 // 設定
 const SITE_NAME = 'WEBテーラー';
 const SITE_URL = 'https://webtailor.work'; // 実際のサイトURLに変更してください
-const ADMIN_EMAIL = 'webtailortokyo@gmail.com'; // 管理者メールアドレス
+const ADMIN_EMAIL = 'contact@webtailor.work'; // 管理者メールアドレス
 const FROM_EMAIL = 'contact@webtailor.work'; // 送信元メールアドレス（ドメインのメールアドレス）
 
 /**
