@@ -216,21 +216,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         
         // 隠しフォームにデータを設定
         setHiddenFormData(formData);
-        
-        // PHPに送信（実際の実装では適切な処理を行う）
-        // setTimeout(() => {
-        //   // セッションストレージをクリア
-        //   sessionStorage.removeItem('contactFormData');
-          
-        //   // サンクスページに遷移
-        //   window.location.href = '/contact-thanks';
-        // }, 1000);
 
-        // 実際にPHPに送信
-        const sendFormEl = document.getElementById('send-form') as HTMLFormElement;
-        sendFormEl.submit();
-        // セッションストレージをクリア
-        sessionStorage.removeItem('contactFormData');
+        // // 実際にPHPに送信
+        // const sendFormEl = document.getElementById('send-form') as HTMLFormElement;
+        // sendFormEl.submit();
+        // // セッションストレージをクリア
+        // sessionStorage.removeItem('contactFormData');
+
+        // reCAPTCHA実行
+        grecaptcha.ready(function() {
+          grecaptcha.execute('6Ld65dgrAAAAAOBbz1LgGJdkdkJtrVuWTx8PnL-2', { action: 'submit' }).then(function(token) {
+            // トークンをhiddenで追加
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'g-recaptcha-response';
+            input.value = token;
+            sendForm.appendChild(input);
+
+            // フォーム送信
+            sendForm.submit();
+            sessionStorage.removeItem('contactFormData');
+          });
+        });
 
       });
       

@@ -135,6 +135,27 @@ function generate_auto_reply($data) {
 // POSTリクエストの処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
+
+        // reCAPTCHA 検証
+        $recaptcha_secret = "6Ld65dgrAAAAAPJfj_YhigNPhd3wR5bE0I3vJ6M9"; // Googleで発行されたSecret
+        $recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
+
+        if (!$recaptcha_response) {
+            throw new Exception('reCAPTCHA トークンが取得できませんでした。');
+        }
+
+        $verify = file_get_contents(
+            "https://www.google.com/recaptcha/api/siteverify?secret="
+            . $recaptcha_secret . "&response=" . $recaptcha_response
+        );
+        $captcha_success = json_decode($verify, true);
+
+        if (!$captcha_success["success"] || ($captcha_success["score"] ?? 0) < 0.5) {
+            throw new Exception('スパム判定されました。送信できません。');
+        }
+
+
+
         // 入力データの取得とサニタイズ
         $form_data = [
             'name' => sanitize_input($_POST['name'] ?? ''),
