@@ -311,8 +311,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      console.log('フォーム送信開始');
-      
       if (!validateForm()) {
         // エラーがある場合は先頭のエラー項目にスクロール
         const firstError = document.querySelector('.border-red-500, .text-red-600:not(.hidden)');
@@ -339,12 +337,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         privacy: (document.getElementById('privacy') as HTMLInputElement).checked ? 'on' : ''
       };
       
-      console.log('保存するデータ:', formData);
-      
       // SessionStorageに保存
       try {
         sessionStorage.setItem('contactFormData', JSON.stringify(formData));
-        console.log('SessionStorageに保存成功');
         
         // 確認画面に遷移
         window.location.href = '/contact-confirm';
