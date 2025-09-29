@@ -218,13 +218,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         setHiddenFormData(formData);
         
         // PHPに送信（実際の実装では適切な処理を行う）
-        setTimeout(() => {
-          // セッションストレージをクリア
-          sessionStorage.removeItem('contactFormData');
+        // setTimeout(() => {
+        //   // セッションストレージをクリア
+        //   sessionStorage.removeItem('contactFormData');
           
-          // サンクスページに遷移
-          window.location.href = '/contact-thanks';
-        }, 1000);
+        //   // サンクスページに遷移
+        //   window.location.href = '/contact-thanks';
+        // }, 1000);
+
+        // 実際にPHPに送信
+        const sendFormEl = document.getElementById('send-form') as HTMLFormElement;
+        sendFormEl.submit();
+        // セッションストレージをクリア
+        sessionStorage.removeItem('contactFormData');
+        // サンクスページに遷移
+        window.location.href = '/contact-thanks';
+
       });
       
     } catch (error) {
