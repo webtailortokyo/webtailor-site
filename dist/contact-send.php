@@ -1,7 +1,6 @@
 <?php
 /**
- * お問い合わせメール送信PHP（ロリポップ対応版）
- * 確認画面からの送信処理を行い、メールを送信する
+ * お問い合わせメール送信PHP（シンプル版）
  */
 
 // セキュリティ設定
@@ -9,18 +8,15 @@ header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');
 header('X-XSS-Protection: 1; mode=block');
 
-// エラーレポート設定（本番環境では無効にする）
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
-
 // セッション開始
 session_start();
 
 // 設定
 const SITE_NAME = 'WEBテーラー';
-const SITE_URL = 'https://webtailor.work'; // 実際のサイトURLに変更してください
-const ADMIN_EMAIL = 'contact@webtailor.work'; // 管理者メールアドレス
-const FROM_EMAIL = 'contact@webtailor.work'; // 送信元メールアドレス（ドメインのメールアドレス）
+const SITE_URL = 'https://webtailor.work';
+const ADMIN_EMAIL = 'contact@webtailor.work'; // ロリポップメールアドレス
+const FROM_EMAIL = 'contact@webtailor.work';
+const FROM_NAME = 'WEBテーラー';
 
 /**
  * 入力値のサニタイズ
@@ -33,10 +29,40 @@ function sanitize_input($data) {
 }
 
 /**
+ * ロリポップ用メール送信関数
+ */
+function send_mail_lolipop($to, $subject, $message, $from_email, $from_name = '', $reply_to = '') {
+    mb_language('Japanese');
+    mb_internal_encoding('UTF-8');
+    
+    $encoded_subject = mb_encode_mimeheader($subject, 'UTF-8');
+    
+    if ($from_name) {
+        $encoded_from_name = mb_encode_mimeheader($from_name, 'UTF-8');
+        $from_header = $encoded_from_name . ' <' . $from_email . '>';
+    } else {
+        $from_header = $from_email;
+    }
+    
+    $headers = [];
+    $headers[] = 'From: ' . $from_header;
+    
+    if ($reply_to) {
+        $headers[] = 'Reply-To: ' . $reply_to;
+    }
+    
+    $headers[] = 'Content-Type: text/plain; charset=UTF-8';
+    $headers[] = 'Content-Transfer-Encoding: 8bit';
+    $headers[] = 'X-Mailer: PHP/' . phpversion();
+    
+    return mb_send_mail($to, $encoded_subject, $message, implode("\r\n", $headers));
+}
+
+/**
  * 管理者向けメール内容生成
  */
 function generate_admin_email($data) {
-    $message = "WEBテーラーのサイトからお問い合わせがありました。\n\n";
+    $message = SITE_NAME . "のサイトからお問い合わせがありました。\n\n";
     $message .= "【お問い合わせ内容】\n";
     $message .= "送信日時: " . date('Y年m月d日 H:i:s') . "\n";
     $message .= "お名前: " . $data['name'] . "\n";
@@ -71,7 +97,7 @@ function generate_admin_email($data) {
  */
 function generate_auto_reply($data) {
     $message = $data['name'] . " 様\n\n";
-    $message .= "この度は、WEBテーラーにお問い合わせいただき、誠にありがとうございます。\n";
+    $message .= "この度は、" . SITE_NAME . "にお問い合わせいただき、誠にありがとうございます。\n";
     $message .= "以下の内容でお問い合わせを受け付けいたしました。\n\n";
     $message .= "【受付内容】\n";
     $message .= "受付日時: " . date('Y年m月d日 H:i:s') . "\n";
@@ -98,32 +124,17 @@ function generate_auto_reply($data) {
     $message .= "今しばらくお待ちください。\n\n";
     $message .= "なお、このメールは自動送信されています。\n";
     $message .= "ご不明な点がございましたら、このメールに直接ご返信ください。\n\n";
-    $message .= "もしお急ぎの場合は、お問い合わせフォームから再度ご連絡ください。\n\n";
-    $message .= "改めまして、お問い合わせありがとうございました。\n";
-    $message .= "お客様のお仕事のお手伝いができることを楽しみにしております。\n\n";
+    $message .= "改めまして、お問い合わせありがとうございました。\n\n";
     $message .= "---\n";
-    $message .= "WEBテーラー\n";
+    $message .= SITE_NAME . "\n";
     $message .= "サイト: " . SITE_URL . "\n";
     
     return $message;
 }
 
-// CSRF対策（簡易版）
-function validate_token() {
-    if (!isset($_POST['csrf_token']) || !isset($_SESSION['csrf_token'])) {
-        return false;
-    }
-    return $_POST['csrf_token'] === $_SESSION['csrf_token'];
-}
-
 // POSTリクエストの処理
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        // CSRF対策
-        if (!validate_token()) {
-            throw new Exception('不正なリクエストです。もう一度お試しください。');
-        }
-        
         // 入力データの取得とサニタイズ
         $form_data = [
             'name' => sanitize_input($_POST['name'] ?? ''),
@@ -136,75 +147,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'privacy' => sanitize_input($_POST['privacy'] ?? '')
         ];
         
-        // 必須項目チェック
-        if (empty($form_data['name'])) {
-            throw new Exception('お名前を入力してください。');
+        // バリデーション
+        $errors = [];
+        
+        if (empty($form_data['name'])) $errors[] = 'お名前を入力してください。';
+        if (empty($form_data['email'])) $errors[] = 'メールアドレスを入力してください。';
+        if (empty($form_data['subject'])) $errors[] = '件名を入力してください。';
+        if (empty($form_data['message'])) $errors[] = 'メッセージを入力してください。';
+        
+        if (!empty($form_data['email']) && !filter_var($form_data['email'], FILTER_VALIDATE_EMAIL)) {
+            $errors[] = '正しいメールアドレスを入力してください。';
         }
         
-        if (empty($form_data['email'])) {
-            throw new Exception('メールアドレスを入力してください。');
-        }
-        
-        if (empty($form_data['subject'])) {
-            throw new Exception('件名を入力してください。');
-        }
-        
-        if (empty($form_data['message'])) {
-            throw new Exception('メッセージを入力してください。');
-        }
-        
-        if ($form_data['privacy'] !== 'agree') {
-            throw new Exception('プライバシーポリシーにご同意ください。');
-        }
-        
-        // メールアドレス形式チェック
-        if (!filter_var($form_data['email'], FILTER_VALIDATE_EMAIL)) {
-            throw new Exception('正しいメールアドレスを入力してください。');
-        }
-        
-        // 文字数制限チェック
-        if (mb_strlen($form_data['name']) > 100) {
-            throw new Exception('お名前は100文字以内で入力してください。');
-        }
-        
-        if (mb_strlen($form_data['message']) > 2000) {
-            throw new Exception('メッセージは2000文字以内で入力してください。');
+        if (!empty($errors)) {
+            throw new Exception(implode('\n', $errors));
         }
         
         // 管理者向けメール送信
         $admin_subject = '【' . SITE_NAME . '】お問い合わせ - ' . $form_data['subject'];
         $admin_message = generate_admin_email($form_data);
         
-        // 管理者向けメールヘッダー（ロリポップ対応）
-        $admin_headers = "From: " . FROM_EMAIL . "\r\n";
-        $admin_headers .= "Reply-To: " . $form_data['email'] . "\r\n";
-        $admin_headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-        $admin_headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
-        
-        // 管理者向けメール送信
-        $admin_mail_sent = mail(ADMIN_EMAIL, $admin_subject, $admin_message, $admin_headers);
-        
-        if (!$admin_mail_sent) {
-            error_log('Admin mail send failed');
-        }
+        $admin_mail_sent = send_mail_lolipop(
+            ADMIN_EMAIL,
+            $admin_subject,
+            $admin_message,
+            FROM_EMAIL,
+            FROM_NAME,
+            $form_data['email']
+        );
         
         // 自動返信メール送信
         $reply_subject = '【' . SITE_NAME . '】お問い合わせありがとうございます';
         $reply_message = generate_auto_reply($form_data);
         
-        // 自動返信メールヘッダー（ロリポップ対応）
-        $reply_headers = "From: " . FROM_EMAIL . "\r\n";
-        $reply_headers .= "Reply-To: " . ADMIN_EMAIL . "\r\n";
-        $reply_headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-        $reply_headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
-        
-        $reply_mail_sent = mail($form_data['email'], $reply_subject, $reply_message, $reply_headers);
-        
-        if (!$reply_mail_sent) {
-            error_log('Reply mail send failed');
-        }
+        $reply_mail_sent = send_mail_lolipop(
+            $form_data['email'],
+            $reply_subject,
+            $reply_message,
+            FROM_EMAIL,
+            FROM_NAME,
+            ADMIN_EMAIL
+        );
         
         // 送信ログ記録
+        $log_dir = __DIR__ . '/logs';
+        if (!file_exists($log_dir)) {
+            mkdir($log_dir, 0755, true);
+        }
+        
         $log_data = [
             'timestamp' => date('Y-m-d H:i:s'),
             'name' => $form_data['name'],
@@ -212,44 +202,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'subject' => $form_data['subject'],
             'admin_mail_sent' => $admin_mail_sent,
             'reply_mail_sent' => $reply_mail_sent,
-            'ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
-            'user_agent' => substr($_SERVER['HTTP_USER_AGENT'] ?? 'unknown', 0, 200)
+            'ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'unknown'
         ];
         
-        // ログファイルに記録（エラーが発生しても処理を続行）
-        try {
-            file_put_contents(
-                __DIR__ . '/logs/contact_log.txt', 
-                json_encode($log_data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "\n", 
-                FILE_APPEND | LOCK_EX
-            );
-        } catch (Exception $log_error) {
-            error_log('Log write error: ' . $log_error->getMessage());
-        }
+        file_put_contents(
+            $log_dir . '/contact_log.txt', 
+            json_encode($log_data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "\n", 
+            FILE_APPEND | LOCK_EX
+        );
         
         // セッションクリア
-        unset($_SESSION['contact_form_data']);
-        unset($_SESSION['form_submitted_at']);
-        unset($_SESSION['csrf_token']);
-        
-        // 成功メッセージをセッションに保存
-        $_SESSION['success_message'] = 'お問い合わせありがとうございました。内容を確認の上、数営業日以内にご返信いたします。';
+        session_destroy();
         
         // サンクスページにリダイレクト
-        header('Location: /contact/thanks');
+        header('Location: /contact-thanks');
         exit;
         
     } catch (Exception $e) {
-        // エラーログに記録
         error_log('Contact send error: ' . $e->getMessage());
-        
-        // エラーメッセージをセッションに保存してフォームにリダイレクト
         $_SESSION['error_message'] = $e->getMessage();
         header('Location: /contact?error=send');
         exit;
     }
 } else {
-    // POST以外のリクエストはフォームにリダイレクト
     header('Location: /contact');
     exit;
 }

@@ -42,7 +42,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="max-w-4xl mx-auto">
         <!-- フォーム -->
         <div class="bg-gradient-to-r from-primary-50/50 to-accent-50/50 p-8 md:p-12 rounded-2xl shadow-lg">
-          <form id="contact-form" action="contact-process.php" method="POST" novalidate>
+          <form id="contact-form" method="POST" novalidate>
             <div class="space-y-8">
               <!-- お名前 -->
               <div class="fade-in-up">
@@ -221,7 +221,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 </BaseLayout>
 
-<!-- フォーム用JavaScript -->
+<!-- フォーム用JavaScript（シンプル版） -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contact-form') as HTMLFormElement;
@@ -241,12 +241,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         const errorDiv = document.getElementById(field + '-error');
         
         if (!input.value.trim()) {
-          errorDiv.textContent = 'この項目は必須です。';
-          errorDiv.classList.remove('hidden');
+          if (errorDiv) errorDiv.textContent = 'この項目は必須です。';
+          if (errorDiv) errorDiv.classList.remove('hidden');
           input.classList.add('border-red-500');
           isValid = false;
         } else {
-          errorDiv.classList.add('hidden');
+          if (errorDiv) errorDiv.classList.add('hidden');
           input.classList.remove('border-red-500');
         }
       });
@@ -257,8 +257,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       
       if (email.value && !emailPattern.test(email.value)) {
-        emailError.textContent = '正しいメールアドレスの形式で入力してください。';
-        emailError.classList.remove('hidden');
+        if (emailError) emailError.textContent = '正しいメールアドレスの形式で入力してください。';
+        if (emailError) emailError.classList.remove('hidden');
         email.classList.add('border-red-500');
         isValid = false;
       }
@@ -268,11 +268,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const privacyError = document.getElementById('privacy-error') as HTMLDivElement;
       
       if (!privacy.checked) {
-        privacyError.textContent = 'プライバシーポリシーに同意してください。';
-        privacyError.classList.remove('hidden');
+        if (privacyError) privacyError.textContent = 'プライバシーポリシーに同意してください。';
+        if (privacyError) privacyError.classList.remove('hidden');
         isValid = false;
       } else {
-        privacyError.classList.add('hidden');
+        if (privacyError) privacyError.classList.add('hidden');
       }
       
       return isValid;
@@ -281,23 +281,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     // リアルタイムバリデーション
     ['name', 'email', 'subject', 'message'].forEach(field => {
       const input = document.getElementById(field) as HTMLInputElement;
+      if (!input) return;
+      
       input.addEventListener('blur', function() {
         const errorDiv = document.getElementById(field + '-error') as HTMLDivElement;
         
         if (!this.value.trim()) {
-          errorDiv.textContent = 'この項目は必須です。';
-          errorDiv.classList.remove('hidden');
+          if (errorDiv) errorDiv.textContent = 'この項目は必須です。';
+          if (errorDiv) errorDiv.classList.remove('hidden');
           this.classList.add('border-red-500');
         } else {
-          errorDiv.classList.add('hidden');
+          if (errorDiv) errorDiv.classList.add('hidden');
           this.classList.remove('border-red-500');
           
           // メールアドレスの場合は形式もチェック
           if (field === 'email') {
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailPattern.test(this.value)) {
-              errorDiv.textContent = '正しいメールアドレスの形式で入力してください。';
-              errorDiv.classList.remove('hidden');
+              if (errorDiv) errorDiv.textContent = '正しいメールアドレスの形式で入力してください。';
+              if (errorDiv) errorDiv.classList.remove('hidden');
               this.classList.add('border-red-500');
             }
           }
@@ -308,6 +310,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     // フォーム送信時の処理
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+      
+      console.log('フォーム送信開始');
       
       if (!validateForm()) {
         // エラーがある場合は先頭のエラー項目にスクロール
@@ -323,31 +327,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       submitText.classList.add('hidden');
       loadingSpinner.classList.remove('hidden');
       
-      // フォームデータを準備
-      const formData = new FormData(form);
+      // フォームデータを取得
+      const formData = {
+        name: (document.getElementById('name') as HTMLInputElement).value,
+        email: (document.getElementById('email') as HTMLInputElement).value,
+        phone: (document.getElementById('phone') as HTMLInputElement).value,
+        subject: (document.getElementById('subject') as HTMLSelectElement).value,
+        budget: (document.getElementById('budget') as HTMLSelectElement).value,
+        deadline: (document.getElementById('deadline') as HTMLSelectElement).value,
+        message: (document.getElementById('message') as HTMLTextAreaElement).value,
+        privacy: (document.getElementById('privacy') as HTMLInputElement).checked ? 'on' : ''
+      };
       
-      // 確認画面用のデータをセッションストレージに保存
-      const formObject = {};
-      formData.forEach((value, key) => {
-        formObject[key] = value;
-      });
-      sessionStorage.setItem('contactFormData', JSON.stringify(formObject));
+      console.log('保存するデータ:', formData);
       
-      // 確認画面に遷移
-      setTimeout(() => {
+      // SessionStorageに保存
+      try {
+        sessionStorage.setItem('contactFormData', JSON.stringify(formData));
+        console.log('SessionStorageに保存成功');
+        
+        // 確認画面に遷移
         window.location.href = '/contact-confirm';
-      }, 500);
+      } catch (error) {
+        console.error('SessionStorage保存エラー:', error);
+        alert('データの保存に失敗しました。もう一度お試しください。');
+        
+        // ローディング解除
+        submitBtn.disabled = false;
+        submitText.classList.remove('hidden');
+        loadingSpinner.classList.add('hidden');
+      }
     });
     
     // 入力時の装飾効果
     const inputs = document.querySelectorAll('input, select, textarea');
     inputs.forEach(input => {
       input.addEventListener('focus', function() {
-        this.parentNode.classList.add('scale-[1.02]');
+        const parent = this.parentElement;
+        if (parent) parent.classList.add('scale-[1.02]');
       });
       
       input.addEventListener('blur', function() {
-        this.parentNode.classList.remove('scale-[1.02]');
+        const parent = this.parentElement;
+        if (parent) parent.classList.remove('scale-[1.02]');
       });
     });
   });
