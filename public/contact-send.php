@@ -35,7 +35,7 @@ function send_mail_lolipop($to, $subject, $message, $from_email, $from_name = ''
     mb_language('Japanese');
     mb_internal_encoding('UTF-8');
     
-    $encoded_subject = mb_encode_mimeheader($subject, 'UTF-8');
+    // $encoded_subject = mb_encode_mimeheader($subject, 'UTF-8');
     
     if ($from_name) {
         $encoded_from_name = mb_encode_mimeheader($from_name, 'UTF-8');
