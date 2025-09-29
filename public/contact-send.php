@@ -55,7 +55,7 @@ function send_mail_lolipop($to, $subject, $message, $from_email, $from_name = ''
     $headers[] = 'Content-Transfer-Encoding: 8bit';
     $headers[] = 'X-Mailer: PHP/' . phpversion();
     
-    return mb_send_mail($to, $encoded_subject, $message, implode("\r\n", $headers));
+    return mb_send_mail($to, $subject, $message, implode("\r\n", $headers));
 }
 
 /**
