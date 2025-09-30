@@ -4,6 +4,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
+
 <BaseLayout 
   title="お問い合わせ内容の確認"
   description="お問い合わせ内容をご確認ください。内容に間違いがなければ送信ボタンを押してください。"
@@ -124,6 +125,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <input type="hidden" name="deadline" id="hidden-deadline">
             <input type="hidden" name="message" id="hidden-message">
             <input type="hidden" name="privacy" value="on">
+            <input type="hidden" name="g-recaptcha-response" id="recaptcha-token">
           </form>
 
           <!-- アクションボタン -->
@@ -172,12 +174,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <!-- 確認画面用JavaScript -->
 <script>
+  declare const grecaptcha: any;
+
   document.addEventListener('DOMContentLoaded', function() {
     const confirmContent = document.getElementById('confirm-content');
     const noDataWarning = document.getElementById('no-data-warning');
     const backBtn = document.getElementById('back-btn');
     const sendBtn = document.getElementById('send-btn') as HTMLButtonElement;
-    const sendForm = document.getElementById('send-form');
     const sendText = document.getElementById('send-text');
     const sendSpinner = document.getElementById('send-spinner');
     
@@ -223,21 +226,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         // // セッションストレージをクリア
         // sessionStorage.removeItem('contactFormData');
 
+
         // reCAPTCHA実行
         grecaptcha.ready(function() {
-          grecaptcha.execute('6Ld65dgrAAAAAOBbz1LgGJdkdkJtrVuWTx8PnL-2', { action: 'submit' }).then(function(token) {
-            // トークンをhiddenで追加
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'g-recaptcha-response';
-            input.value = token;
-            sendForm.appendChild(input);
+          grecaptcha.execute('6Ld65dgrAAAAAOBbz1LgGJdkdkJtrVuWTx8PnL-2', { action: 'submit' }).then(function(token: string) {
+            // 既存の hidden input にトークンをセット
+            (document.getElementById('recaptcha-token') as HTMLInputElement).value = token;
 
-            // フォーム送信
-            sendForm.submit();
+            // フォームを送信
+            const sendFormEl = document.getElementById('send-form') as HTMLFormElement;
+            sendFormEl.submit();
+
+            // セッションストレージをクリア
             sessionStorage.removeItem('contactFormData');
           });
-        });
+        });        
 
       });
       
@@ -248,7 +251,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
     
     // 確認データを表示する関数
-    function displayConfirmData(data) {
+    function displayConfirmData(data: Record<string, string>) {
       // 必須項目
       document.getElementById('confirm-name').textContent = data.name || '';
       document.getElementById('confirm-email').textContent = data.email || '';
