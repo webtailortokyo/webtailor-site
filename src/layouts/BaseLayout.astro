@@ -92,6 +92,16 @@ const fullUrl = `${siteUrl}${currentPath.endsWith('/') ? currentPath : `${curren
   {title === "お問い合わせ内容の確認" && (
   <script src="https://www.google.com/recaptcha/api.js?render=6Ld65dgrAAAAAOBbz1LgGJdkdkJtrVuWTx8PnL-2"></script>
 )}
+
+<!-- Google tag (gtag.js) -->
+<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-GH9M6KVTYN"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-GH9M6KVTYN');
+</script>
 </head>
 
 <body class="min-h-screen bg-neutral-50 text-neutral-800 font-noto antialiased custom-scrollbar">
